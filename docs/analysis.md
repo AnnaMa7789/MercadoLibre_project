@@ -1,12 +1,14 @@
 1. **Problem Understanding: Brief summary of the business problem**
+
 In the context of e-commerce platform, product listing quality significantly impacts conversion rates and seller success. My task is to build a listing quality evaluation framework, based on listing and sales information for 100,000 products and to generate recommendation for those products identified as low listing quality.
+
 2. **Methodology**:
 Among 48 columns in the dataset, there are two main quantative metrics: price and sales (sold_quantity). As the product category varies from car to office supplies, I did not compare abosulte value, but instead using the price/sales ranking within each category to quantify each product's sales performance. Only category with more than 10 products are considered (~74%). Sales is the major output for quality scoring, but price is also relied upon to determine priority of fixing (for instance, if adding video link can boost 10% sales, it is recommended to work on high-value products first).
 
 The remaining columns are qualitative metrics which provide detailed information of the product. Among them I picked the following key factors to build scoring systems. I have analyzed a few other metrics such as shipping info, picture quality, which did not make to the list due to minimal differentiation
-**Title Length (characters)
-Title Quality Score (depending on info density, key elements, placeholder words, repeated words,etc)
-Whether it has video
+**Title Length (characters)  
+Title Quality Score (depending on info density, key elements, placeholder words, repeated words,etc)  
+Whether it has video  
 Whether it has been updated
 Number of Pictures
 Attributes Entry Count
