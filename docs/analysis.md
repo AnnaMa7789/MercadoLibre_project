@@ -5,7 +5,7 @@ In the context of e-commerce platform, product listing quality significantly imp
 2. **Methodology**  
 Among 48 columns in the dataset, there are two main quantative metrics: price and sales (sold_quantity). As the product category varies from car to office supplies, I did not compare abosulte value, but instead using the price/sales ranking within each category to quantify each product's sales performance. Only category with more than 10 products are considered (~74%). Sales is the major output for quality scoring, but price is also relied upon to determine priority of fixing (for instance, if adding video link can boost 10% sales, it is recommended to work on high-value products first).  
 
-The remaining columns are qualitative metrics which provide detailed information of the product. Among them I picked the following key factors to build scoring systems. I have analyzed a few other metrics such as shipping info, picture quality, which did not make it to the list due to minimal differentiation.
+The remaining columns are qualitative metrics which provide detailed information of the product. Among them I picked the following key factors to build scoring systems. I have analyzed a few other metrics such as shipping info, picture quality, which did not make it to the list due to minimal differentiation.  
 **Title Length (characters)  
 Title Quality Score (depending on info density, key elements, placeholder words, repeated words,etc)  
 Whether it has video  
@@ -25,7 +25,7 @@ With scoring system implemented, low (below 25th percentile) and median (25th ~ 
    qualitative metrics:  
       - titles: there are 98,823 unique titles grouped under 10,907 categories. Average title length is 45 characters (ranging from 1 to 100). length of title has positive impact on sales with correlation coefficient = 0.625  
 video: only 2985 (~3%) products with video links.   
-      - image: about 33.3% products have 1 picture, about 64.3% have 2-6 pictures. Only 789 products (~ 0.8%) are missing pictures. Majority of picture size is 500*375 or 500*500 and majority of max pricture size 1200*900  
+      - image: about 33.3% products have 1 picture, about 64.3% have 2-6 pictures. Only 789 products (~ 0.8%) are missing pictures. Majority of picture size is 500x375 or 500x500 and majority of max pricture size 1200x900  
       - update frequency: ~70% of listings have never been updated since creation, ~30% are updated within 2 months.  
       - attribute completeness: ~87% products have blank attributes, and ~10% have 1 or 2 entries. For those products who have at least one entries, about 80% have complete field information.  entry number (correlation  0.039) and completeness (correlation 0.091 ) both have positive impact on sales.   
       - shipping info completeness：all products have shipping and there is mininal differentiation regarding completeness. 
@@ -68,7 +68,7 @@ based on the assumption that
 Tools: deepseek
 Here is the function to Use AI to analyze listings with low quality scores and provide recommendation
 
-sample prompt:
+sample prompt:  
    system_prompt = '''
 You are an experienced e-commerce optimization specialist for MercadoLibre.
 Your expertise is in identifying and fixing non-title related listing quality issues.
@@ -86,8 +86,8 @@ Your task is to:
 3. Provide actionable, specific recommendations
 4. Focus on quick wins that sellers can implement immediately
 
-'''
-   input_prompt:input_prompt = f'''
+'''  
+input_prompt = f'''
 LISTINGS DATA:
 Total listings analyzed: {len(listings_data)}
 All listings have: Good title scores (≥70) but Low overall quality scores (≤60)
@@ -142,7 +142,7 @@ FORMAT RESPONSE AS JSON:
 }}
 
 Focus on PRACTICAL, ACTIONABLE advice that sellers can implement without technical expertise.
-'''
+'''  
 sample output='''
 1. Listing ID: MLA578261979
    Current Score: 40.6
@@ -239,5 +239,5 @@ This diagnostic assessment details the reasons behind low listing quality and ou
 
 visualization
 I used Gradio to build the dashboard for easier intergration with GenAI. 
-![Logo描述](../images/dashboard_view_1.jpg)
+![overview](../image/dashboard_view_1.jpg)
 
