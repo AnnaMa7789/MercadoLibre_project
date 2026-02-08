@@ -1,46 +1,46 @@
-1. **Problem Understanding: Brief summary of the business problem**
+1. **Problem Understanding: Brief summary of the business problem**  
 
 In the context of e-commerce platform, product listing quality significantly impacts conversion rates and seller success. My task is to build a listing quality evaluation framework, based on listing and sales information for 100,000 products and to generate recommendation for those products identified as low listing quality.
 
-2. **Methodology**:
-Among 48 columns in the dataset, there are two main quantative metrics: price and sales (sold_quantity). As the product category varies from car to office supplies, I did not compare abosulte value, but instead using the price/sales ranking within each category to quantify each product's sales performance. Only category with more than 10 products are considered (~74%). Sales is the major output for quality scoring, but price is also relied upon to determine priority of fixing (for instance, if adding video link can boost 10% sales, it is recommended to work on high-value products first).
+2. **Methodology**  
+Among 48 columns in the dataset, there are two main quantative metrics: price and sales (sold_quantity). As the product category varies from car to office supplies, I did not compare abosulte value, but instead using the price/sales ranking within each category to quantify each product's sales performance. Only category with more than 10 products are considered (~74%). Sales is the major output for quality scoring, but price is also relied upon to determine priority of fixing (for instance, if adding video link can boost 10% sales, it is recommended to work on high-value products first).  
 
-The remaining columns are qualitative metrics which provide detailed information of the product. Among them I picked the following key factors to build scoring systems. I have analyzed a few other metrics such as shipping info, picture quality, which did not make to the list due to minimal differentiation
+The remaining columns are qualitative metrics which provide detailed information of the product. Among them I picked the following key factors to build scoring systems. I have analyzed a few other metrics such as shipping info, picture quality, which did not make it to the list due to minimal differentiation.
 **Title Length (characters)  
 Title Quality Score (depending on info density, key elements, placeholder words, repeated words,etc)  
 Whether it has video  
-Whether it has been updated
-Number of Pictures
-Attributes Entry Count
-Attributes Completeness**
+Whether it has been updated  
+Number of Pictures  
+Attributes Entry Count  
+Attributes Completeness**  
 
-The weight of each factor is determined by correlation coefficient, in other words, how significant the impact of each factor on sales ranking within category.
+The weight of each factor is determined by correlation coefficient, in other words, how significant the impact of each factor on sales ranking within category.  
 
-With scoring system implemented, low (below 25th percentile) and median (25th ~ 50th percentile)  score products are identified. To achieve highest ROI, fix plan is provided for products with high sales increase potentail and with easy fix (title related issues)
+With scoring system implemented, low (below 25th percentile) and median (25th ~ 50th percentile)  score products are identified. To achieve highest ROI, fix plan is provided for products with high sales increase potentail and with easy fix (title related issues)  
 
-4. **Key Findings**:
-- Main insights from EDA
-   *quantative metrics:
-   The total sales are 239,699, which indicates a relatively low (2.39) sales per product.  Median price is 250, variation range is very large due to different product types. 99.99% of products never change price since listing is created.
-   *qualitative metrics:
-      - titles: there are 98,823 unique titles grouped under 10,907 categories. Average title length is 45 characters (ranging from 1 to 100). length of title has positive impact on sales with correlation coefficient = 0.625
-video: only 2985 (~3%) products with video links. 
-      - image: about 33.3% products have 1 picture, about 64.3% have 2-6 pictures. Only 789 products (~ 0.8%) are missing pictures. Majority of picture size is 500*375 or 500*500 and majority of max pricture size 1200*900
-      - update frequency: ~70% of listings have never been updated since creation, ~30% are updated within 2 months.
-      - attribute completeness: ~87% products have blank attributes, and ~10% have 1 or 2 entries. For those products who have at least one entries, about 80% have complete field information.  entry number (correlation  0.039) and completeness (correlation 0.091 ) both have positive impact on sales. 
+3. **Key Findings**:
+- Main insights from EDA  
+   quantative metrics:  
+   The total sales are 239,699, which indicates a relatively low (2.39) sales per product.  Median price is 250, variation range is very large due to different product types. 99.99% of products never change price since listing is created.  
+   qualitative metrics:  
+      - titles: there are 98,823 unique titles grouped under 10,907 categories. Average title length is 45 characters (ranging from 1 to 100). length of title has positive impact on sales with correlation coefficient = 0.625  
+video: only 2985 (~3%) products with video links.   
+      - image: about 33.3% products have 1 picture, about 64.3% have 2-6 pictures. Only 789 products (~ 0.8%) are missing pictures. Majority of picture size is 500*375 or 500*500 and majority of max pricture size 1200*900  
+      - update frequency: ~70% of listings have never been updated since creation, ~30% are updated within 2 months.  
+      - attribute completeness: ~87% products have blank attributes, and ~10% have 1 or 2 entries. For those products who have at least one entries, about 80% have complete field information.  entry number (correlation  0.039) and completeness (correlation 0.091 ) both have positive impact on sales.   
       - shipping info completeness：all products have shipping and there is mininal differentiation regarding completeness. 
-- Distribution of quality scores
-Average quality score is 29.35 with standard deviation of 9.54. Score distribution as shown below indicates relative poor overall quality. Key drivers are attribute completeness and picture count, which show massive differences between low and high-quality listings. Quality scores vary significantly across categories, with some categories achieving much higher average quality. 
-  Excellent (81-100)  :      0 products (  0.0%)
-  Good (61-80)        :    733 products (  0.7%)
-  Fair (41-60)        :   9807 products (  9.8%)
-  Poor (21-40)        :  83474 products ( 83.5%)
-  Very Poor (0-20)    :    747 products (  0.7%)
+- Distribution of quality scores  
+Average quality score is 29.35 with standard deviation of 9.54. Score distribution as shown below indicates relative poor overall quality. Key drivers are attribute completeness and picture count, which show massive differences between low and high-quality listings. Quality scores vary significantly across categories, with some categories achieving much higher average quality.   
+  Excellent (81-100)  :      0 products (  0.0%)  
+  Good (61-80)        :    733 products (  0.7%)  
+  Fair (41-60)        :   9807 products (  9.8%)  
+  Poor (21-40)        :  83474 products ( 83.5%)  
+  Very Poor (0-20)    :    747 products (  0.7%)  
 
-- Patterns identified
-Sales are highly concentrated, with top performers driven by category selection and listing quality rather than price.Key drivers include high attribute completeness, multiple pictures, and updated listings, which strongly correlate with quality scores. However, many listings underperform due to poor quality and incomplete information, despite some having good individual metrics.
-5. **Recommendations**:
-Top 5 recommendations are: 
+- Patterns identified  
+Sales are highly concentrated, with top performers driven by category selection and listing quality rather than price.Key drivers include high attribute completeness, multiple pictures, and updated listings, which strongly correlate with quality scores. However, many listings underperform due to poor quality and incomplete information, despite some having good individual metrics.  
+4. **Recommendations**:  
+Top 5 recommendations are:   
 1. Implement mandatory attribute completion for key product fields
    Impact: Significant improvement in quality scores, better search relevance, and higher buyer confidence.
    Priority: HIGH
@@ -143,10 +143,7 @@ FORMAT RESPONSE AS JSON:
 
 Focus on PRACTICAL, ACTIONABLE advice that sellers can implement without technical expertise.
 '''
-sample output: 
-🚨 TOP 10 LISTINGS WITH NON-TITLE ISSUES:
-========================================================================================================================
-
+sample output='''
 1. Listing ID: MLA578261979
    Current Score: 40.6
    Main Issues: Only 1 image, No video
@@ -236,7 +233,11 @@ sample output:
    Improvement Potential: 12-20 points
    Priority: MEDIUM
    Time to Implement: 15 minutes
-
-- Value delivered
+'''
+- Value delivered  
 This diagnostic assessment details the reasons behind low listing quality and outlines corrective action plans. Given the multitude of potential causes, AI efficiently filters and prioritizes the issues offering the highest incremental benefit—that is, those whose resolution would have a quantifiable impact on sales. Consequently, it not only generates considerable savings in time and labor but also ensures that efforts are channeled toward the most critical areas.
+
+visualization
+I used Gradio to build the dashboard for easier intergration with GenAI. 
+![Logo描述](../images/dashboard_view_1.jpg)
 
