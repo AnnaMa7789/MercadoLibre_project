@@ -3,6 +3,8 @@ import duckdb
 import pandas as pd
 import numpy as np
 import json
+import sys
+sys.path.append('../src')
 import data_loader as dl
 import  quality_scorer as qs
 
