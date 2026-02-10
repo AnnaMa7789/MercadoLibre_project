@@ -1,7 +1,7 @@
 # MercadoLibre_project
 ```markdown
 # git clone
-git clone https://github.com/AnnaMa7789/MercadoLibre_project.git
+git clone https://github.com/AnnaMa7789/xueqima_challenge_MercadoLibre.git
 
 # Setup
 pip install -r requirements.txt
@@ -16,7 +16,7 @@ from my_module import my_function
 result = my_function(input_field)
 
 # repository structure
-your_name_challenge/
+xueqima_challenge_MercadoLibre/
 ├── README.md                          # Setup and execution instructions
 ├── requirements.txt                   # Python dependencies
 │
