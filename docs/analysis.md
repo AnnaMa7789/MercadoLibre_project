@@ -15,18 +15,19 @@ The remaining columns consist of qualitative metrics containing detailed product
 
 The weight assigned to each factor is determined by its correlation coefficient, which quantifies the significance of its impact on a product's sales ranking within its category.  
 
-After implementing the scoring system, products are identified as having low (below the 25th percentile) or median (25th to 50th percentile) quality scores. To maximize return on investment (ROI), a corrective action plan is specifically generated for products that exhibit both a high potential for sales increase and issues that are straightforward to resolve, such as those related to product titles.  
+After implementing the scoring system, I am able to identify low-quality listings (below the 25th percentile) and median-quality listings (25th to 50th percentile). To maximize return on investment (ROI), a corrective action plan is specifically generated for products that exhibit both a high potential for sales increase and issues that are straightforward to resolve, such as those related to product titles.  
 
 **Key Findings**  
 Main insights from EDA  
 * quantative metrics:  
->The total sales are 239,699, which indicates a relatively low (2.39) sales per product.  Median price is 250, variation range is very large due to different product types. 99.99% of products never change price since listing is created.  
+>The total sales are 239,699, which indicates a relatively low (2.39) sales per product. Majority of sales concentrate on top 5% products.
+> Median price is 250, variation range is large due to different product types. 99.99% of products never change price since listing is created.  
 * qualitative metrics:  
-> >* titles: there are 98,823 unique titles grouped under 10,907 categories. Average title length is 45 characters (ranging from 1 to 100). length of title has positive impact on sales with correlation coefficient = 0.625  
+> >* titles: there are 98,823 unique titles grouped under 10,907 categories. Average title length is 45 characters (ranging from 1 to 100). Length of title has positive impact on sales ranking with correlation coefficient (r) = 0.625  
 > >* video: only 2985 (about 3%) products with video links.   
 > >* image: about 33.3% products have 1 picture, about 64.3% have 2-6 pictures. Only 789 products (about 0.8%) are missing pictures. Majority of picture size is 500x375 or 500x500 and majority of max pricture size 1200x900  
 > >* update frequency: ~70% of listings have never been updated since creation, ~30% are updated within 2 months.  
-> >* attribute completeness: ~87% products have blank attributes, and ~10% have 1 or 2 entries. For those products who have at least one entries, about 80% have complete field information.  entry number (correlation  0.039) and completeness (correlation 0.091 ) both have positive impact on sales.   
+> >* attribute completeness: ~87% products have blank attributes, and ~10% have 1 or 2 entries. For those products who have at least one entries, about 80% have complete field information.  entry number (r= 0.039) and completeness (r =  0.091 ) both have positive impact on sales.   
 > >* shipping info completeness：all products have shipping and there is mininal differentiation regarding completeness.
 
 
